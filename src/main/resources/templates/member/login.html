@@ -12,30 +12,29 @@
 </head>
 <body>
 <div class="container-fluid mt-5 p-5 bg-light text-dark text-center">
-    <h1>회원가입 페이지</h1>
-    <form class="mb-3 mt-5 " action="/member/save" method="post">
+    <h1>로그인 페이지</h1>
+
+
+    <form class="mb-3 mt-5 " action="/member/login" method="post">
+        <div class="mb-3" th:if="${param.error}">
+            <h4>아디비번오류</h4>
+        </div>
         <div class="col-3 container text-center mb-3">
             <div class="input-group">
                 <span class="input-group-text" id="basic-addon">아이디</span>
-                <input type="text" name="username" class="form-control form-control-sm" placeholder="2글자 이상"
+                <input type="text" name="username" class="form-control form-control-sm"
                        aria-describedby="basic-addon1">
             </div>
         </div>
         <div class="col-3 container text-center mb-3">
             <div class="input-group">
                 <span class="input-group-text" id="basic-addon1">비밀번호</span>
-                <input type="password" name="password" class="form-control form-control-sm" placeholder="4글자 이상"
+                <input type="password" name="password" class="form-control form-control-sm"
                        aria-describedby="basic-addon1">
             </div>
         </div>
-        <div class="col-3 container text-center mb-3">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">닉네임</span>
-                <input type="text" name="displayName" class="form-control form-control-sm" placeholder="2글자 이상"
-                       aria-describedby="basic-addon1">
-            </div>
-        </div>
-        <button type="submit">회원가입</button>
+
+        <button type="submit">로그인</button>
     </form>
 
 </div>
