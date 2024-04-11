@@ -1,0 +1,17 @@
+.card {
+    margin : 30px auto;
+    display : flex;
+}
+.card img {
+    width : 150px;
+    margin-right : 20px;
+}
+
+.detail {
+ text-align : center;
+}
+.detail img{
+ max-width : 30%;
+ display : block;
+ margin : auto;
+}

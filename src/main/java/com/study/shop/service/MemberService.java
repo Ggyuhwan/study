@@ -26,10 +26,14 @@ public class MemberService {
         // reposiory의 save 메서드 호출 (조건. entity객체를 넘겨줘야 함)
     }
 
-    public MemberDTO updateForm(Long id) {
-        Optional<MemberEntity> member = memberRepository.findById(id);
+    public MemberDTO updateForm(String username) {
+        Optional<MemberEntity> member = memberRepository.findByUsername(username);
         MemberEntity memberEntity = member.get();
         MemberDTO dto = MemberDTO.tomemberDTO(memberEntity);
         return dto;
+    }
+
+    public void update(MemberDTO memberDTO) {
+        memberRepository.save(MemberEntity.toUpdateMemberEntity(memberDTO));
     }
 }

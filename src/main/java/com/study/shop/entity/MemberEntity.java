@@ -26,5 +26,15 @@ public class MemberEntity {
         memberEntity.setDisplayName(memberDTO.getDisplayName());
         return memberEntity;
     }
+    public static MemberEntity toUpdateMemberEntity(MemberDTO memberDTO) {
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setId(memberDTO.getId());
+        memberEntity.setUsername(memberDTO.getUsername());
+        memberEntity.setPassword(memberDTO.getPassword());
+        memberEntity.setDisplayName(memberDTO.getDisplayName());
+        return memberEntity;
+    }
+
+
 
 }

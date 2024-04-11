@@ -5,7 +5,6 @@ import com.study.shop.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
     // 생성자 주입
     private final MemberService memberService;
-    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/member/save")
     public String joinForm() {
@@ -36,9 +34,9 @@ public class MemberController {
         return "redirect:/member/login";
     }
 
-    @GetMapping("/member/update/{id}")
-    public String myPage(Authentication auth, Model model, @PathVariable Long id) {
-        MemberDTO memberDTO = memberService.updateForm(id);
+    @GetMapping("/member/update")
+    public String myPage(Authentication auth, Model model) {
+        MemberDTO memberDTO = memberService.updateForm(auth.getName());
         model.addAttribute("data", memberDTO);
         System.out.println("memberDTO.getUsername() = " + memberDTO.getUsername());
         System.out.println("auth = " + auth);
@@ -48,6 +46,12 @@ public class MemberController {
             return "redirect:";
         }
         return "member/mypage";
+    }
+    @PostMapping("/member/update")
+    public String update(@ModelAttribute MemberDTO memberDTO) {
+
+        memberService.update(memberDTO);
+        return "redirect:/member/update";
     }
     @GetMapping("/test")
     public String test() {
